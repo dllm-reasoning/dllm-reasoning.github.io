@@ -4,19 +4,16 @@
   <meta charset="utf-8">
   <meta name="description"
         content="d1: Scaling Reasoning in Diffusion Large Language Models via Reinforcement Learning">
-  <meta name="keywords" content="CLIP, mBART, NMT">
+  <meta name="keywords" content="Diffusion LLM, Reinforcement Learning, dLLM, diffu-GRPO">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>d1: Scaling Reasoning in Diffusion Large Language Models via Reinforcement Learning</title>
 
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
-
     gtag('js', new Date());
-
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
@@ -38,8 +35,6 @@
   <script src="./static/js/index.js"></script>
 </head>
 <body>
-
-
 
 <section class="hero">
   <div class="hero-body">
@@ -64,23 +59,10 @@
             <span class="author-block"><sup>1</sup>University of California, Los Angeles</span>
             <span class="author-block"><sup>2</sup>Meta AI</span>
           </div>
-          <!-- <div class="is-size-6 publication-authors">
-            <span class="author-block">Published in International Conference of Computer Vision, 2023</span>
-          </div> -->
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
-<!--               <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
- -->              <span class="link-block">
+              <span class="link-block">
                 <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -89,19 +71,8 @@
                   <span>arXiv</span>
                 </a>
               </span>
-              <!-- Video Link. -->
-<!--               <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
- -->              <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/siyan-zhao/diffu-GRPO"
+                <a href="https://github.com/dllm-reasoning/d1"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -109,17 +80,7 @@
                   <span>Code</span>
                   </a>
               </span>
-              <!-- Dataset Link. -->
-              <!-- <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a> -->
             </div>
-
           </div>
         </div>
       </div>
@@ -130,147 +91,161 @@
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3 has-text-centered">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Recent large language models (LLMs) have demonstrated strong reasoning capabilities that benefits from online reinforcement learning (RL). These capabilities have primarily been demonstrated within the left-to-right autoregressive (AR) generation paradigm. In contrast, non-autoregressive paradigms based on diffusion generate text in a coarse-to-fine manner. Although recent diffusion-based large language models (dLLMs) have achieved competitive language modeling performance compared to their AR counterparts, it remains unclear if dLLMs can also leverage recent advances in LLM reasoning.
+            Recent large language models (LLMs) have demonstrated strong reasoning capabilities that benefit from online reinforcement learning (RL). These capabilities have primarily been demonstrated within the left-to-right autoregressive (AR) generation paradigm. In contrast, non-autoregressive paradigms based on diffusion generate text in a coarse-to-fine manner. Although recent diffusion-based large language models (dLLMs) have achieved competitive language modeling performance compared to their AR counterparts, it remains unclear if dLLMs can also leverage recent advances in LLM reasoning.
           </p>
           <p>
-            To this end, we propose <i>d1</i>, a framework to adapt pre-trained masked dLLMs into reasoning models via a combination of supervised fine-tuning (SFT) and RL.
-          <p>
-            Specifically, we develop and extend techniques to improve reasoning in pretrained dLLMs: (a) we utilize a masked SFT technique to distill knowledge and instill self-improvement behavior directly from existing datasets, and (b) we introduce a novel critic-free, policy-gradient based RL algorithm called <i>diffu</i>-GRPO. Through empirical studies, we investigate the performance of different post-training recipes on multiple mathematical and logical reasoning benchmarks. We find that d1 yields the best performance and significantly improves performance of a state-of-the-art dLLM. 
+            To this end, we propose <i>d1</i>, a framework to adapt pre-trained masked dLLMs into reasoning models via a combination of supervised finetuning (SFT) and RL. Specifically, we develop and extend techniques to improve reasoning in pretrained dLLMs: (a) we utilize a masked SFT technique to distill knowledge and instill self-improvement behavior directly from existing datasets, and (b) we introduce a novel critic-free, policy-gradient based RL algorithm called <i>diffu</i>-GRPO. Through empirical studies, we investigate the performance of different post-training recipes on multiple mathematical and logical reasoning benchmarks. We find that d1 yields the best performance and significantly improves performance of a state-of-the-art dLLM.
           </p>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="columns is-centered has-text-centered">
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Overview</h2>
-          <div class="container is-max-desktop">
-            <div class="container has-text-centered">
-              <figure class="image is-50x-auto is-inline-block">
-                <img src="./static/images/pull_fig.png" alt="teaser image" style="max-width: 80%; display: block; margin: 0 auto;">
-                <h2 class="title is-3"></h2>
-                <img src="./static/images/sota.png" alt="teaser image" style="max-width: 80%; display: block; margin: 0 auto;">
-                <h2 class="title is-3"></h2>
-                <h2 class="subtitle has-text-centered">
-                  We propose d1, a two-stage framework that enhances the reasoning performance of pre-trained masked dLLMs by sequentially combining SFT and online RL. Using LLaDA-8B-Instruct as our base model, we show significant improvements with our method across four reasoning tasks, and against a suite of SOTA models.
-              </h2>
-              </figure>
-            </div>
-          </div>
+        <h2 class="title is-3 has-text-centered">Key Results</h2>
+        <div class="container has-text-centered">
+          <figure class="image is-inline-block">
+            <img src="./static/images/pull_fig.png" alt="Main results" style="max-width: 80%; display: block; margin: 0 auto;">
+          </figure>
+          <p class="subtitle mt-4">
+            Across four math and logical reasoning tasks, d1-LLaDA, which undergoes SFT followed by our proposed diffu-GRPO, consistently outperforms the base LLaDA-8B-Instruct model.
+          </p>
         </div>
       </div>
-</section>
-
-<section class="hero teaser mt-6">
-  <div class="container is-max-desktop">
-    <div class="container has-text-centered">
-      <figure class="image is-inline-block">
-        <img src="./static/images/qualitative_example_1.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
-      </figure>
     </div>
   </div>
 </section>
 
-<section class="hero teaser mt-6">
+<section class="section">
   <div class="container is-max-desktop">
-    <div class="container has-text-centered">
-      <h2 class="title is-3">SFT on Distilled Reasoning Traces</h2>
-        <figure class="image is-inline-block">
-          <img src="./static/images/algorithm_sft.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
-        </figure>
-        <h2 class="subtitle has-text-centered">
-          We adapt the masked SFT algorithm proposed in LLaDA and use it to cold-start <i>diffu</i>-GRPO. Specifically, we perform SFT on distilled reasoning traces from thinking models (the s1K dataset) to imbibe dLLMs with the ability to self-correct.
-      </h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Comparison with State-of-the-Art Models</h2>
+        <div class="container has-text-centered">
+          <figure class="image is-inline-block">
+            <img src="./static/images/sota.png" alt="SOTA comparison" style="max-width: 80%; display: block; margin: 0 auto;">
+          </figure>
+          <p class="subtitle mt-4">
+            d1-LLaDA achieves the highest GSM8K score and competitive MATH500 performance compared to recent leading dLLMs and similar-sized AR LLMs.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="hero teaser mt-6">
+<section class="section">
   <div class="container is-max-desktop">
-    <div class="container has-text-centered">
-      <h2 class="title is-3"><i>diffu</i>-GRPO</h2>
-      <figure class="item item-steve">
-        <img src="./static/images/logprob.png" alt="diffugrpo" style="max-width: 200%; display: block; margin: 0 auto;">
-        <figure class="image is-inline-block">
-          <img src="./static/images/algobox.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
-        </figure>
-        <h2 class="subtitle has-text-centered">
-          The conventional GRPO algorithm does not directly generalize to dLLMs. The challenge lies in the computation of the log-likelihood of a completion at both, the token and sequence level. While this is straightforward for AR models...
-      </h2>
-      </figure>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Qualitative Examples</h2>
+        <div class="container has-text-centered">
+          <figure class="image is-inline-block">
+            <img src="./static/images/qualitative_example_1.png" alt="Qualitative example" style="max-width: 80%; display: block; margin: 0 auto;">
+          </figure>
+          <p class="subtitle mt-4">
+            SFT and d1-LLaDA models show self-verification and self-correction behaviors ("aha moments") in their reasoning traces.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-
-<section class="hero teaser mt-6">
+<section class="section">
   <div class="container is-max-desktop">
-    <div class="container has-text-centered">
-      <figure class="image is-inline-block">
-        <img src="./static/images/mu.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
-        <h2 class="subtitle has-text-centered">
-          Our random masking strategy significantly speeds up GRPO convergence!
-      </h2>
-      </figure>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Method 1: Masked SFT</h2>
+        <div class="container has-text-centered">
+          <figure class="image is-inline-block">
+            <img src="./static/images/algorithm_sft.png" alt="SFT algorithm" style="max-width: 70%; display: block; margin: 0 auto;">
+          </figure>
+          <p class="subtitle mt-4">
+            We perform SFT on s1k, a curated dataset consisting of 1000 high-quality reasoning questions. The reasoning traces exhibit detailed step-by-step problem-solving processes, including verification of intermediate results and backtracking when encountering errors.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Method 2: diffu-GRPO</h2>
+        <div class="container has-text-centered">
+          <figure class="image is-inline-block">
+            <img src="./static/images/logprob.png" alt="Log probability estimation" style="max-width: 80%; display: block; margin: 0 auto;">
+          </figure>
+          <p class="subtitle mt-4">
+            Adapting RL algorithms to masked dLLMs poses unique challenges because existing successful approaches rely on estimating policy distributions through computing log-probabilities of generated sequences, which cannot be directly applied to dLLMs.
+          </p>
+          <figure class="image is-inline-block mt-5">
+            <img src="./static/images/algobox.png" alt="diffu-GRPO algorithm" style="max-width: 70%; display: block; margin: 0 auto;">
+          </figure>
+          <p class="subtitle mt-4">
+            Our novel diffu-GRPO algorithm leverages random prompt masking for efficient log-probability estimation, which serves as a form of regularization for policy optimization.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-
-
-
-
-
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Efficiency of Random Masking</h2>
+        <div class="container has-text-centered">
+          <figure class="image is-inline-block">
+            <img src="./static/images/mu.png" alt="Random masking efficiency" style="max-width: 80%; display: block; margin: 0 auto;">
+          </figure>
+          <p class="subtitle mt-4">
+            Random masking consistently outperforms fixed masking and allows scaling μ (gradient updates per batch) to much higher values while maintaining or improving performance, facilitating faster convergence of RL training.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content has-text-centered">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings {zhaoandgupta2023d1,
-    title={d1: Scaling Reasoning in Diffusion Large Language Models via Test-Time Inference},
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>@inproceedings{zhaoandgupta2025d1,
+    title={d1: Scaling Reasoning in Diffusion Large Language Models via Reinforcement Learning},
     author={Zhao, Siyan and Gupta, Devaansh and Zheng, Qinqing and Grover, Aditya},
     booktitle={preprint},
     year={2025}
-}
-</code></pre>
+}</code></pre>
   </div>
 </section>
 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link"
-         href="media/preprint.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/devaansh100" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/dllm-reasoning/d1">
         <i class="fab fa-github"></i>
       </a>
     </div>
     <div class="columns is-centered">
       <div class="column is-8">
-        <div class="content">
+        <div class="content has-text-centered">
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to <a href="https://nerfies.github.io">this</a> page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
           </p>
         </div>
       </div>
