@@ -179,13 +179,6 @@
               <p class="image-caption">d1-LLaDA achieves the highest GSM8K score and competitive MATH500 performance compared to recent leading dLLMs and similar-sized AR LLMs.</p>
             </div>
             
-            <p>Table 1 provides a detailed breakdown of performance across all tasks and generation sequence lengths:</p>
-            
-            <div class="figure-container">
-              <img src="./static/images/table1.png" alt="Performance comparison table" style="max-width: 90%; display: block; margin: 0 auto;">
-              <p class="image-caption">Model performance across different generation sequence lengths. Green and blue values indicate best and second-best performance respectively.</p>
-            </div>
-          </div>
         </div>
 <!-- Two-Stage Training Framework -->
 <div class="blog-section">
@@ -233,6 +226,19 @@
             </div>
             
             <!-- <p>Our random masking approach serves as a form of regularization for policy optimization, allowing more gradient updates per batch and thereby reducing the number of online generations needed for RL training - significantly lowering computational costs.</p> -->
+          </div>
+        </div>
+
+          <!-- After the existing Key Results section -->
+        <div class="blog-section">
+          <h2 class="title is-3 has-text-centered section-title">Detailed Performance Results</h2>
+          <div class="content has-text-justified">
+            <p>Table below shows the detailed performance comparison across different benchmarks and generation sequence lengths. d1-LLaDA consistently outperforms all other models, with diffu-GRPO showing better performance than SFT alone.</p>
+            
+            <div class="figure-container">
+              <img src="./static/images/table1.png" alt="Performance comparison table" style="max-width: 90%; display: block; margin: 0 auto;">
+              <p class="image-caption">Table: Model performance on GSM8K, MATH500, Countdown, and Sudoku benchmarks. Green values indicate best performance and blue values indicate second-best performance in each column. All models are evaluated with 0-shot prompting.</p>
+            </div>
           </div>
         </div>
 
