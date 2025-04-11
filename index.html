@@ -39,23 +39,6 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://devaansh100.github.io">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-  </div>
-</nav>
 
 
 <section class="hero">
@@ -144,6 +127,28 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent large language models (LLMs) have demonstrated strong reasoning capabilities that benefits from online reinforcement learning (RL). These capabilities have primarily been demonstrated within the left-to-right autoregressive (AR) generation paradigm. In contrast, non-autoregressive paradigms based on diffusion generate text in a coarse-to-fine manner. Although recent diffusion-based large language models (dLLMs) have achieved competitive language modeling performance compared to their AR counterparts, it remains unclear if dLLMs can also leverage recent advances in LLM reasoning.
+          </p>
+          <p>
+            To this end, we propose <i>d1</i>, a framework to adapt pre-trained masked dLLMs into reasoning models via a combination of supervised fine-tuning (SFT) and RL.
+          <p>
+            Specifically, we develop and extend techniques to improve reasoning in pretrained dLLMs: (a) we utilize a masked SFT technique to distill knowledge and instill self-improvement behavior directly from existing datasets, and (b) we introduce a novel critic-free, policy-gradient based RL algorithm called <i>diffu</i>-GRPO. Through empirical studies, we investigate the performance of different post-training recipes on multiple mathematical and logical reasoning benchmarks. We find that d1 yields the best performance and significantly improves performance of a state-of-the-art dLLM. 
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section class="hero teaser">
   <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -151,9 +156,9 @@
           <div class="container is-max-desktop">
             <div class="container has-text-centered">
               <figure class="image is-50x-auto is-inline-block">
-                <img src="./static/images/pull_fig.pdf" alt="teaser image" style="max-width: 80%; display: block; margin: 0 auto;">
+                <img src="./static/images/pull_fig.png" alt="teaser image" style="max-width: 80%; display: block; margin: 0 auto;">
                 <h2 class="title is-3"></h2>
-                <img src="./static/images/sota_comparison_dual_axis.pdf" alt="teaser image" style="max-width: 80%; display: block; margin: 0 auto;">
+                <img src="./static/images/sota.png" alt="teaser image" style="max-width: 80%; display: block; margin: 0 auto;">
                 <h2 class="title is-3"></h2>
                 <h2 class="subtitle has-text-centered">
                   We propose d1, a two-stage framework that enhances the reasoning performance of pre-trained masked dLLMs by sequentially combining SFT and online RL. Using LLaDA-8B-Instruct as our base model, we show significant improvements with our method across four reasoning tasks, and against a suite of SOTA models.
@@ -181,9 +186,9 @@
     <div class="container has-text-centered">
       <h2 class="title is-3"><i>diffu</i>-GRPO</h2>
       <figure class="item item-steve">
-        <img src="./static/images/diffugrpo.pdf" alt="diffugrpo" style="max-width: 200%; display: block; margin: 0 auto;">
+        <img src="./static/images/logprob.png" alt="diffugrpo" style="max-width: 200%; display: block; margin: 0 auto;">
         <figure class="image is-inline-block">
-          <img src="./static/images/algorithm.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
+          <img src="./static/images/algobox.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
         </figure>
         <h2 class="subtitle has-text-centered">
           The conventional GRPO algorithm does not directly generalize to dLLMs. The challenge lies in the computation of the log-likelihood of a completion at both, the token and sequence level. While this is straightforward for AR models...
@@ -193,24 +198,12 @@
   </div>
 </section>
 
-<!-- <section class="hero teaser mt-6">
-  <div class="container is-max-desktop">
-    <div class="container has-text-centered">
-      <figure class="image is-inline-block">
-        <img src="./static/images/algorithm.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
-        <h2 class="subtitle has-text-centered">
-          Thus, how to scale reasoning performance? To this end, we propose diffu-GRPO - a variation of GRPO for dLLMs. We make three simple changes to conventional GRPO, (i) Replace AR generation with iterative denoising steps, (ii) instead of directly calculating the log probability, we estimate it via monte-carlo sampling (since dLLMs optimize an ELBO) and (iii) while performing multiple update steps on a prompt, we enhance the learning signal by randomly masking the prompt in each iteration, leading to much faster convergence. While this would be OOD for AR models, it is in-distribution for dLLMs.
-      </h2>
-      </figure>
-    </div>
-  </div>
-</section>
- -->
+
 <section class="hero teaser mt-6">
   <div class="container is-max-desktop">
     <div class="container has-text-centered">
       <figure class="image is-inline-block">
-        <img src="./static/images/masking_curves.pdf" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
+        <img src="./static/images/mu.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
         <h2 class="subtitle has-text-centered">
           Our random masking strategy significantly speeds up GRPO convergence!
       </h2>
@@ -235,133 +228,8 @@
 
 
 
-<!-- <section class="hero teaser mt-6">
-  <div class="container is-max-desktop">
-    <div class="container has-text-centered">
-      <figure class="image is-inline-block">
-        <img src="./static/images/results.png" alt="Centered Image" style="max-width: 70%; display: block; margin: 0 auto">
-        <h2 class="subtitle has-text-centered">
-          Performance imporvements with diffu-GRPO.
-      </h2>
-      </figure>
-    </div>
-  </div>
-</section>
- -->
 
 
-
-<!-- <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Recent large language models (LLMs) have demonstrated strong reasoning capabilities that benefits from online reinforcement learning (RL). These capabilities have primarily been demonstrated within the left-to-right autoregressive (AR) generation paradigm. In contrast, non-autoregressive paradigms based on diffusion generate text in a coarse-to-fine manner. Although recent diffusion-based large language models (dLLMs) have achieved competitive language modeling performance compared to their AR counterparts, it remains unclear if dLLMs can also leverage recent advances in LLM reasoning.
-          </p>
-          <p>
-            To this end, we propose <i>d1</i>, a framework to adapt pre-trained masked dLLMs into reasoning models via a combination of supervised fine-tuning (SFT) and RL.
-          <p>
-            Specifically, we develop and extend techniques to improve reasoning in pretrained dLLMs: (a) we utilize a masked SFT technique to distill knowledge and instill self-improvement behavior directly from existing datasets, and (b) we introduce a novel critic-free, policy-gradient based RL algorithm called <i>diffu</i>-GRPO. Through empirical studies, we investigate the performance of different post-training recipes on multiple mathematical and logical reasoning benchmarks. We find that d1 yields the best performance and significantly improves performance of a state-of-the-art dLLM. 
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-  <!--   <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src=""
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div> -->
-<!--     <div class="columns is-centered has-text-centered">
-      <div class="column is-max-desktop">
-        <h2 class="title is-3">Poster</h2>
-        <figure class="image is-50x-auto is-inline-block">
-          <img src="" alt="CLIPTrans poster">
-        </figure>
-      </div>
-    </div>
- --><!--     <div class="Concurrent Works">
-      <div class="column is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Concurrent Works</h2>
-          <div class="content">
-            <ol>
-              <li><h4><a href="">Tackling Ambiguity with Images: Improved Multimodal Machine Translation and Contrastive Evaluation</a></h4></li>
-              <li><h4><a href="">Beyond Triplet: Leveraging the Most Data for Multimodal Machine Translation</a></h4></li>
-              
-            </ol>
-      </div>
-    </div>
- -->
-    <!--/ Paper video. -->
-  </div>
-</section>
 
 
 <section class="section" id="BibTeX">
