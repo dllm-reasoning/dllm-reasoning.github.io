@@ -283,23 +283,24 @@ pre {
         <div class="section-divider"></div>
 
         <!-- Combined Results & Comparative Analysis -->
+        <!-- Modified "Improved Reasoning in Math and Logical Tasks" section -->
         <div class="blog-section">
           <div class="section-badge">Improved Reasoning in Math and Logical Tasks</div>
           <div class="content has-text-justified">
             <p>Through empirical studies on multiple mathematical and logical reasoning benchmarks, we find that d1 yields the best performance and significantly improves the capabilities of state-of-the-art dLLMs.</p>
             
-            <div class="row" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; margin-bottom: 1rem;">
-              <div style="flex: 1; min-width: 45%;">
-                <div class="figure-container" style="margin-top: 0;">
-                  <img src="./static/images/pull_fig.png" alt="Main results">
-                  <p class="image-caption">Across four math and logical reasoning tasks, d1-LLaDA, which undergoes SFT followed by our proposed diffu-GRPO, consistently outperforms the base LLaDA-8B-Instruct model.</p>
-                </div>
+            <!-- Changed from flex row to a column layout -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <!-- First figure -->
+              <div class="figure-container" style="margin-top: 0;">
+                <img src="./static/images/pull_fig.png" alt="Main results">
+                <p class="image-caption">Across four math and logical reasoning tasks, d1-LLaDA, which undergoes SFT followed by our proposed diffu-GRPO, consistently outperforms the base LLaDA-8B-Instruct model.</p>
               </div>
-              <div style="flex: 1; min-width: 45%;">
-                <div class="figure-container" style="margin-top: 0;">
-                  <img src="./static/images/sota.png" alt="SOTA comparison">
-                  <p class="image-caption">d1-LLaDA achieves the highest GSM8K score and competitive MATH500 performance compared to recent leading dLLMs and similar-sized AR LLMs.</p>
-                </div>
+              
+              <!-- Second figure -->
+              <div class="figure-container" style="margin-top: 0;">
+                <img src="./static/images/sota.png" alt="SOTA comparison">
+                <p class="image-caption">d1-LLaDA achieves the highest GSM8K score and competitive MATH500 performance compared to recent leading dLLMs and similar-sized AR LLMs.</p>
               </div>
             </div>
           </div>
