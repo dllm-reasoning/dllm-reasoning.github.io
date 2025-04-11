@@ -42,6 +42,7 @@
       padding: 1.5rem;
       border-radius: 8px;
       margin-bottom: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .image-caption {
       font-size: 0.9rem;
@@ -60,6 +61,19 @@
       text-align: center;
       margin: 1rem 0;
       font-style: italic;
+    }
+    .equal-contribution {
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+    .figure-container {
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .figure-container img {
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -83,6 +97,8 @@
               <a href="https://aditya-grover.github.io">Aditya Grover</a><sup>1</sup>
             </span>
           </div>
+
+          <div class="equal-contribution">* Equal Contribution</div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of California, Los Angeles</span>
@@ -143,10 +159,10 @@
           <h2 class="title is-3 has-text-centered section-title">Performance Improvements</h2>
           <div class="content has-text-justified">
             <p>Through empirical studies on multiple mathematical and logical reasoning benchmarks, we find that d1 yields the best performance and significantly improves the capabilities of state-of-the-art dLLMs.</p>
-            <figure class="image has-text-centered">
+            <div class="figure-container">
               <img src="./static/images/pull_fig.png" alt="Main results" style="max-width: 80%; display: block; margin: 0 auto;">
               <p class="image-caption">Across four math and logical reasoning tasks, d1-LLaDA, which undergoes SFT followed by our proposed diffu-GRPO, consistently outperforms the base LLaDA-8B-Instruct model.</p>
-            </figure>
+            </div>
           </div>
         </div>
 
@@ -154,10 +170,10 @@
         <div class="blog-section">
           <h2 class="title is-3 has-text-centered section-title">Comparison with Similar-Sized Models</h2>
           <div class="content has-text-justified">
-            <figure class="image has-text-centered">
+            <div class="figure-container">
               <img src="./static/images/sota.png" alt="SOTA comparison" style="max-width: 80%; display: block; margin: 0 auto;">
               <p class="image-caption">d1-LLaDA achieves the highest GSM8K score and competitive MATH500 performance compared to recent leading dLLMs and similar-sized AR LLMs.</p>
-            </figure>
+            </div>
           </div>
         </div>
 
@@ -165,28 +181,36 @@
         <div class="blog-section">
           <h2 class="title is-3 has-text-centered section-title">Our Two-Stage Training Framework</h2>
           <div class="content has-text-justified">
-            <p>We propose d1, a two-stage framework to enhance reasoning capabilities in masked dLLMs:</p>
+            <p>We propose d1, a two-stage framework to enhance reasoning capabilities in masked dLLMs. Adapting RL algorithms to masked dLLMs poses unique challenges because existing successful approaches for AR models rely on estimating policy distributions through computing log-probabilities of generated sequences, which cannot be directly applied to dLLMs. We need to efficiently compute the per-token and the sequence log-probability of dLLMs' completion o.</p>
+            
+            <p>Autoregressive (AR) models, such as Transformers, directly model the per-token log-probabilities, and the sequence-level log-probability of o can be easily computed through the chain rule using one forward pass. Unlike AR models, dLLMs do not adhere to sequential factorization of the sequence log-probability. Meanwhile, the per-token log-probability are also costly to compute since the decoding process invokes the unmasking predictor multiple times.</p>
+            
+            <p>As the first step, we propose an efficient log-probability estimator in our approach to Efficient Log Probability Estimation for Masked dLLMs. For sequence log-probability, we use a mean-field approximation that decomposes it into a product of independent per-token log-probabilities. For per-token log-probability, we introduce an estimation method that only calls fθ once.</p>
+            
+            <p>Mean-Field Approximation of Sequence Log Probability. As opposed to AR models, dLLMs treat the token sequence as a whole and therefore its sequence-level log-probability lacks the AR decomposition. To efficiently estimate it, we use a simple mean-field decomposition that approximates log πθ (o|q) by ∑|o|k=1 log πθ (ok|q). The per-token log-probability estimation is introduced below.</p>
+            
+            <p>One-Step Per-Token Log Probability Estimation with Prompt Masking. Let ⊕ denote the concatenation operator. Given a prompt q, the decoding process starts from an initial sequence q ⊕ mask ⊕ . . . ⊕ mask (up to a preset length). To compute the log-probability of o, we perturb q where every token is randomly masked out with probability pmask, resulting in a new prompt q′. We then do one-step unmasking to obtain log fθ (ok|q′ ⊕ mask . . . ⊕ mask) and use it as an estimation of log πθ (ok|q), 1 ≤ k ≤ |o|. We discuss the motivation of using a masked prompt q′ in the next section.</p>
+            
+            <p>We note that LLaDA uses a Monte Carlo type of approximation to estimate the log-probabilities, where the MC sample size is 128. This estimator is inefficient for online RL, since it creates a large computational graph with hundreds of forward passes, resulting in inefficient policy optimization and excessive memory usage.</p>
             
             <h3 class="title is-4">Stage 1: Masked SFT on High-Quality Reasoning Traces</h3>
-            <figure class="image has-text-centered">
+            <div class="figure-container">
               <img src="./static/images/algorithm_sft.png" alt="SFT algorithm" style="max-width: 70%; display: block; margin: 0 auto;">
               <p class="image-caption">We perform SFT on s1k, a curated dataset consisting of 1000 high-quality reasoning questions. The reasoning traces exhibit detailed step-by-step problem-solving processes, including verification of intermediate results and backtracking when encountering errors.</p>
-            </figure>
+            </div>
             
             <h3 class="title is-4 mt-5">Stage 2: Efficient Policy Gradient Algorithm for dLLMs - diffu-GRPO</h3>
-            <p>Adapting RL algorithms to masked dLLMs poses unique challenges because existing successful approaches rely on estimating policy distributions through computing log-probabilities of generated sequences, which cannot be directly applied to dLLMs.</p>
-            
-            <figure class="image has-text-centered">
+            <div class="figure-container">
               <img src="./static/images/logprob.png" alt="Log probability estimation" style="max-width: 80%; display: block; margin: 0 auto;">
               <p class="image-caption">Estimating log-probabilities in dLLMs requires innovative approaches since they lack the natural sequential factorization of autoregressive models.</p>
-            </figure>
+            </div>
             
             <p>Our solution: A novel approach using random prompt masking for efficient policy optimization:</p>
             
-            <figure class="image has-text-centered">
+            <div class="figure-container">
               <img src="./static/images/algobox.png" alt="diffu-GRPO algorithm" style="max-width: 70%; display: block; margin: 0 auto;">
               <p class="image-caption">Our novel diffu-GRPO algorithm leverages random prompt masking for efficient log-probability estimation, which serves as a form of regularization for policy optimization.</p>
-            </figure>
+            </div>
           </div>
         </div>
 
@@ -194,10 +218,10 @@
         <div class="blog-section">
           <h2 class="title is-3 has-text-centered section-title">Benefits of Random Masking</h2>
           <div class="content has-text-justified">
-            <figure class="image has-text-centered">
+            <div class="figure-container">
               <img src="./static/images/mu.png" alt="Random masking efficiency" style="max-width: 80%; display: block; margin: 0 auto;">
               <p class="image-caption">Random masking consistently outperforms fixed masking and allows scaling μ (gradient updates per batch) to much higher values while maintaining or improving performance, facilitating faster convergence of RL training.</p>
-            </figure>
+            </div>
             
             <p>Our random masking approach serves as a form of regularization for policy optimization, allowing more gradient updates per batch and thereby reducing the number of online generations needed for RL training - significantly lowering computational costs.</p>
           </div>
@@ -207,10 +231,10 @@
         <div class="blog-section">
           <h2 class="title is-3 has-text-centered section-title">"Aha Moments" in Reasoning</h2>
           <div class="content has-text-justified">
-            <figure class="image has-text-centered">
+            <div class="figure-container">
               <img src="./static/images/qualitative_example_1.png" alt="Qualitative example" style="max-width: 80%; display: block; margin: 0 auto;">
               <p class="image-caption">SFT and d1-LLaDA models show self-verification and self-correction behaviors ("aha moments") in their reasoning traces.</p>
-            </figure>
+            </div>
             <p>The models trained with SFT show self-verification and self-correction behaviors in their reasoning traces, where they can recognize errors in their initial reasoning paths, backtrack, and correct to arrive at the answer.</p>
           </div>
         </div>
