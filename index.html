@@ -24,11 +24,10 @@
 .hero {
   background-color: #4b6cb7; /* Solid color instead of gradient */
   color: white;
-  padding: 3rem 0;
-  margin-bottom: 3rem;
+  padding: 2rem 0; /* Reduced padding */
+  margin-bottom: 1.5rem; /* Reduced margin */
   position: relative;
 }
-/* Removed .hero::after which contained the checkered pattern */
 
 .hero .title, .hero .publication-authors a {
   color: white;
@@ -39,10 +38,10 @@
   text-shadow: 0 2px 3px rgba(0,0,0,0.2);
 }
 .section-title {
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1rem; /* Reduced margin */
+  margin-bottom: 1rem; /* Reduced margin */
   position: relative;
-  padding-bottom: 15px;
+  padding-bottom: 10px; /* Reduced padding */
 }
 .section-title::after {
   content: "";
@@ -56,12 +55,12 @@
   border-radius: 2px;
 }
 .content p {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem; /* Reduced margin */
 }
 .blog-section {
-  margin-bottom: 5rem;
+  margin-bottom: 1.5rem; /* Reduced margin significantly */
   position: relative;
-  padding: 2rem;
+  padding: 1.5rem; /* Reduced padding */
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 8px 30px rgba(0,0,0,0.06);
@@ -73,9 +72,9 @@
 }
 .highlight-box {
   background-color: #f6f9ff; /* Solid color instead of gradient */
-  padding: 2rem;
+  padding: 1.5rem; /* Reduced padding */
   border-radius: 10px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; /* Reduced margin */
   box-shadow: 0 2px 10px rgba(75,108,183,0.1);
   border-left: 5px solid #4b6cb7;
 }
@@ -83,7 +82,7 @@
   font-size: 0.9rem;
   color: #666;
   text-align: center;
-  margin-top: 0.8rem;
+  margin-top: 0.5rem; /* Reduced margin */
   font-style: italic;
 }
 .key-point {
@@ -95,7 +94,7 @@
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
-  margin: 1rem 0;
+  margin: 0.5rem 0; /* Reduced margin */
   font-style: italic;
   border: 1px solid rgba(50,115,220,0.3);
 }
@@ -106,9 +105,9 @@
   color: rgba(255,255,255,0.8);
 }
 .figure-container {
-  margin: 2.5rem 0;
+  margin: 1rem 0; /* Reduced margin significantly */
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem; /* Reduced padding */
   background-color: rgba(246,249,255,0.5);
   border-radius: 10px;
   transition: transform 0.2s ease;
@@ -127,23 +126,24 @@
 .figure-container img:hover {
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
-/* Removed .section-divider class with wave pattern */
+/* Modified section-divider to be much smaller */
 .section-divider {
-  height: 80px;
-  margin: 3rem 0;
+  height: 10px; /* Drastically reduced height */
+  margin: 0.5rem 0; /* Drastically reduced margin */
   border-top: 1px solid #eaeaea;
 }
 
 .title.is-4 {
   color: #4b6cb7;
   border-bottom: 2px solid rgba(75,108,183,0.2);
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  padding-bottom: 5px; /* Reduced padding */
+  margin-bottom: 10px; /* Reduced margin */
 }
 .footer {
   background-color: #182848; /* Solid color instead of gradient */
   color: white;
-  padding: 3rem 0;
+  padding: 2rem 0; /* Reduced padding */
+  margin-top: 1rem; /* Added small margin from last content */
 }
 .footer a {
   color: white;
@@ -167,14 +167,33 @@
   padding: 5px 15px;
   border-radius: 20px;
   font-size: 0.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem; /* Reduced margin */
   display: inline-block;
   font-weight: bold;
   box-shadow: 0 3px 5px rgba(75,108,183,0.3);
 }
-/* Removed animated-bg class with gradient animation */
 .animated-bg {
   background-color: #f6f9ff;
+}
+
+/* Added spacing adjustments for headings */
+h2.title.is-3 {
+  margin-bottom: 0.75rem !important;
+}
+
+h3.title.is-4 {
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Adjusting section spacing */
+section.section {
+  padding: 1.5rem 1.5rem; /* Reduced padding */
+}
+
+/* Reduce spacing between sections */
+.columns.is-centered {
+  margin-bottom: 0 !important;
 }
 
 pre {
@@ -303,7 +322,7 @@ pre {
               <p class="image-caption">We perform SFT on s1k, a curated dataset consisting of 1000 high-quality reasoning questions. The reasoning traces exhibit detailed step-by-step problem-solving processes, including verification of intermediate results and backtracking when encountering errors.</p>
             </div>
             
-            <h3 class="title is-4 mt-5">Stage 2: Efficient Policy Gradient Algorithm for dLLMs - diffu-GRPO</h3>
+            <h3 class="title is-4">Stage 2: Efficient Policy Gradient Algorithm for dLLMs - diffu-GRPO</h3>
             <div class="figure-container">
               <img src="./static/images/logprob.png" alt="Log probability estimation">
               <p class="image-caption">Estimating log-probabilities in dLLMs requires innovative approaches since they lack the natural sequential factorization of autoregressive models.</p>
