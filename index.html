@@ -22,20 +22,25 @@
   background-color: #fcfcfc;
 }
 .hero {
-  background-color: #4b6cb7; /* Solid color instead of gradient */
-  color: white;
+  background-color: transparent; /* Changed from #4b6cb7 to transparent */
+  color: #333; /* Changed from white to dark text for better visibility */
   padding: 2rem 0; /* Reduced padding */
   margin-bottom: 1.5rem; /* Reduced margin */
   position: relative;
 }
 
-.hero .title, .hero .publication-authors a {
-  color: white;
+.hero .title {
+  color: #4b6cb7; /* Changed from white to blue to match theme */
 }
+
+.hero .publication-authors a {
+  color: #333; /* Changed from white to dark text */
+}
+
 .publication-title {
   font-family: 'Google Sans', sans-serif;
   font-weight: bold;
-  text-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  text-shadow: none; /* Removed text shadow */
 }
 .section-title {
   margin-top: 1rem; /* Reduced margin */
@@ -102,7 +107,7 @@
   font-size: 0.85rem;
   font-style: italic;
   margin-top: 0.5rem;
-  color: rgba(255,255,255,0.8);
+  color: #666; /* Changed from white to dark gray */
 }
 .figure-container {
   margin: 1rem 0; /* Reduced margin significantly */
@@ -199,6 +204,12 @@ section.section {
 pre {
   border-radius: 8px;
   box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Added styles for publication links in transparent header */
+.publication-links .button {
+  background-color: #4b6cb7;
+  color: white;
 }
   </style>
 </head>
