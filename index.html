@@ -179,12 +179,11 @@
             </div>
           </div>
         </div>
-
 <!-- Two-Stage Training Framework -->
 <div class="blog-section">
   <h2 class="title is-3 has-text-centered section-title">d1: Our Two-Stage Training Framework</h2>
   <div class="content has-text-justified">
-    <p>We propose d1, a two-stage framework to enhance reasoning capabilities in masked dLLMs. Adapting RL algorithms to masked dLLMs poses unique challenges since existing successful approaches for AR models rely on computing log-probabilities of generated sequences through sequential factorization, which cannot be directly applied to dLLMs. We need to efficiently compute per-token and sequence log-probabilities for dLLMs' completions.</p>
+    <p>We propose d1, a two-stage framework to enhance reasoning capabilities in masked dLLMs.</p>
     
     <h3 class="title is-4">Stage 1: Masked SFT on High-Quality Reasoning Traces</h3>
     <div class="figure-container">
@@ -197,11 +196,18 @@
       <img src="./static/images/logprob.png" alt="Log probability estimation" style="max-width: 80%; display: block; margin: 0 auto;">
       <p class="image-caption">Estimating log-probabilities in dLLMs requires innovative approaches since they lack the natural sequential factorization of autoregressive models.</p>
     </div>
-    <p>Autoregressive (AR) models directly model per-token log-probabilities, and the sequence-level log-probability can be easily computed through the chain rule using one forward pass. Unlike AR models, dLLMs do not adhere to sequential factorization of the sequence log-probability. Additionally, per-token log-probabilities are costly to compute since the decoding process invokes the unmasking predictor multiple times.</p>
+    <p>Adapting RL algorithms to masked dLLMs poses unique challenges since existing approaches for AR models (PPO and GRPO) rely on computing log-probabilities of generated sequences, which cannot be directly applied to dLLMs. While AR models use sequential factorization, dLLMs lack this natural decomposition due to their iterative, non-sequential generation process.</p>
     
-    <p>To overcome these challenges, we develop an efficient log-probability estimation approach with two key components. First, for sequence log-probability, we use a mean-field approximation that decomposes it into a product of independent per-token log-probabilities. Second, for per-token log-probability, we introduce a one-step estimation method that requires only a single call to the unmasking predictor.</p>
+    <p>To address this, we propose an efficient log-probability estimator using Mean-Field Approximation of Sequence Log Probability. This approach decomposes sequence-level log-probability with a simple mean-field decomposition and employs One-Step Per-Token Log Probability Estimation with Prompt Masking.</p>
     
-    <p>Building on these estimators, we create diffu-GRPO, which incorporates random prompt masking for policy optimization. This random masking approach serves as a form of regularization during training, creating diverse views of the same prompt-completion pairs. Importantly, it allows us to scale the number of gradient updates per batch and reduces the number of online generations needed for RL training—significantly lowering computational costs while maintaining stable learning dynamics:</p>
+    <p>Using this estimator, we extend GRPO to masked dLLMs with the following objective:</p>
+    
+    <div class="figure-container">
+      <img src="./static/images/diffugrpoloss.png" alt="diffu-GRPO loss" style="max-width: 80%; display: block; margin: 0 auto;">
+      <p class="image-caption">The diffu-GRPO objective builds on GRPO while leveraging our efficient log-probability estimators.</p>
+    </div>
+    
+    <p>On-policy RL algorithms typically perform multiple gradient updates per batch of samples, requiring a careful balance between outer batch iterations and inner gradient updates. Our log-probability estimator introduces stochastic masking that creates perturbed views of the same (prompt, completion) pairs, serving as regularization for policy optimization. This unique approach allows us to scale the number of inner updates (μ) to higher values while maintaining stable learning dynamics, reducing the number of outer batch iterations and online generations needed—ultimately lowering computational cost significantly.</p>
     
     <div class="figure-container">
       <img src="./static/images/algobox.png" alt="diffu-GRPO algorithm" style="max-width: 70%; display: block; margin: 0 auto;">
@@ -209,7 +215,6 @@
     </div>
   </div>
 </div>
-
         <!-- Random Masking Benefits -->
         <div class="blog-section">
           <h2 class="title is-3 has-text-centered section-title">Benefits of Random Masking</h2>
