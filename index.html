@@ -19,36 +19,81 @@
     body {
       font-family: 'Noto Sans', sans-serif;
       line-height: 1.6;
+      background-color: #fcfcfc;
     }
     .hero {
-      background-color: #f5f5f5;
+      background: linear-gradient(120deg, #4b6cb7 0%, #182848 100%);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="none" width="100" height="100"/><rect fill="rgba(255,255,255,0.05)" width="50" height="50"/><rect fill="rgba(255,255,255,0.05)" x="50" y="50" width="50" height="50"/></svg>');
+      opacity: 0.3;
+    }
+    .hero .title, .hero .publication-authors a {
+      color: white;
     }
     .publication-title {
       font-family: 'Google Sans', sans-serif;
       font-weight: bold;
+      text-shadow: 0 2px 3px rgba(0,0,0,0.2);
     }
     .section-title {
       margin-top: 2rem;
       margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #4b6cb7, #182848);
+      border-radius: 2px;
     }
     .content p {
       margin-bottom: 1.2rem;
     }
     .blog-section {
-      margin-bottom: 3rem;
+      margin-bottom: 5rem;
+      position: relative;
+      padding: 2rem;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .blog-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
     }
     .highlight-box {
-      background-color: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
+      background: linear-gradient(to right, #f6f9ff, #f0f5ff);
+      padding: 2rem;
+      border-radius: 10px;
       margin-bottom: 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(75,108,183,0.1);
+      border-left: 5px solid #4b6cb7;
     }
     .image-caption {
       font-size: 0.9rem;
       color: #666;
       text-align: center;
-      margin-top: 0.5rem;
+      margin-top: 0.8rem;
+      font-style: italic;
     }
     .key-point {
       font-weight: bold;
@@ -57,23 +102,100 @@
     .equation-placeholder {
       background-color: #eef6ff;
       padding: 1rem;
-      border-radius: 4px;
+      border-radius: 8px;
       text-align: center;
       margin: 1rem 0;
       font-style: italic;
+      border: 1px solid rgba(50,115,220,0.3);
     }
     .equal-contribution {
       font-size: 0.85rem;
       font-style: italic;
       margin-top: 0.5rem;
+      color: rgba(255,255,255,0.8);
     }
     .figure-container {
-      margin: 2rem 0;
+      margin: 2.5rem 0;
       text-align: center;
+      padding: 1rem;
+      background-color: rgba(246,249,255,0.5);
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+    .figure-container:hover {
+      transform: scale(1.01);
     }
     .figure-container img {
-      border-radius: 6px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 90% !important;
+      margin: 0 auto;
+      display: block;
+      transition: box-shadow 0.3s ease;
+    }
+    .figure-container img:hover {
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .section-divider {
+      height: 100px;
+      margin: 3rem 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%234b6cb7" fill-opacity="0.1" d="M0,128L48,149.3C96,171,192,213,288,218.7C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,186.7C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+    }
+    .title.is-4 {
+      color: #4b6cb7;
+      border-bottom: 2px solid rgba(75,108,183,0.2);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .footer {
+      background: linear-gradient(120deg, #182848 0%, #4b6cb7 100%);
+      color: white;
+      padding: 3rem 0;
+    }
+    .footer a {
+      color: white;
+    }
+    .footer p {
+      color: rgba(255,255,255,0.8);
+    }
+    .publication-links .button {
+      margin: 5px;
+      transition: transform 0.2s;
+    }
+    .publication-links .button:hover {
+      transform: translateY(-3px);
+    }
+    .author-block a:hover {
+      text-decoration: underline;
+    }
+    .section-badge {
+      background: linear-gradient(90deg, #4b6cb7, #182848);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      font-weight: bold;
+      box-shadow: 0 3px 5px rgba(75,108,183,0.3);
+    }
+    /* Animated background for certain sections */
+    .animated-bg {
+      background: linear-gradient(-45deg, #f6f9ff, #eef6ff, #e6f0ff, #f0f5ff);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    pre {
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -140,7 +262,8 @@
       <div class="column is-four-fifths">
         
         <!-- Abstract -->
-        <div class="blog-section">
+        <div class="blog-section animated-bg">
+          <div class="section-badge">Abstract</div>
           <h2 class="title is-3 has-text-centered section-title">Scaling Reasoning in Diffusion LLMs via RL</h2>
           <div class="content has-text-justified">
             <div class="highlight-box">
@@ -154,116 +277,118 @@
           </div>
         </div>
 
+        <div class="section-divider"></div>
+
         <!-- Key Results -->
         <div class="blog-section">
-          <!-- <h2 class="title is-3 has-text-centered section-title">Performance Improvements</h2> -->
+          <div class="section-badge">Key Results</div>
           <div class="content has-text-justified">
             <p>Through empirical studies on multiple mathematical and logical reasoning benchmarks, we find that d1 yields the best performance and significantly improves the capabilities of state-of-the-art dLLMs.</p>
             <div class="figure-container">
-              <img src="./static/images/pull_fig.png" alt="Main results" style="max-width: 80%; display: block; margin: 0 auto;">
+              <img src="./static/images/pull_fig.png" alt="Main results">
               <p class="image-caption">Across four math and logical reasoning tasks, d1-LLaDA, which undergoes SFT followed by our proposed diffu-GRPO, consistently outperforms the base LLaDA-8B-Instruct model.</p>
             </div>
           </div>
         </div>
 
+        <div class="section-divider"></div>
 
         <!-- Within the SOTA Comparison section -->
         <div class="blog-section">
+          <div class="section-badge">Comparative Analysis</div>
           <h2 class="title is-3 has-text-centered section-title">Comparison with Similar-Sized Models</h2>
           <div class="content has-text-justified">
             <div class="figure-container">
-              <img src="./static/images/sota.png" alt="SOTA comparison" style="max-width: 80%; display: block; margin: 0 auto;">
+              <img src="./static/images/sota.png" alt="SOTA comparison">
               <p class="image-caption">d1-LLaDA achieves the highest GSM8K score and competitive MATH500 performance compared to recent leading dLLMs and similar-sized AR LLMs.</p>
             </div>
-            
-        </div>
-<!-- Two-Stage Training Framework -->
-<div class="blog-section">
-  <h2 class="title is-3 has-text-centered section-title">d1: Two-Stage Framework to Enhance Reasoning in Masked dLLMs</h2>
-  <div class="content has-text-justified">
-    <!-- <p>We propose d1, a two-stage framework to enhance reasoning capabilities in masked dLLMs.</p> -->
-    
-    <h3 class="title is-4">Stage 1: Masked SFT on High-Quality Reasoning Traces</h3>
-    <div class="figure-container">
-      <img src="./static/images/algorithm_sft.png" alt="SFT algorithm" style="max-width: 70%; display: block; margin: 0 auto;">
-      <p class="image-caption">We perform SFT on s1k, a curated dataset consisting of 1000 high-quality reasoning questions. The reasoning traces exhibit detailed step-by-step problem-solving processes, including verification of intermediate results and backtracking when encountering errors.</p>
-    </div>
-    
-    <h3 class="title is-4 mt-5">Stage 2: Efficient Policy Gradient Algorithm for dLLMs - diffu-GRPO</h3>
-    <div class="figure-container">
-      <img src="./static/images/logprob.png" alt="Log probability estimation" style="max-width: 80%; display: block; margin: 0 auto;">
-      <p class="image-caption">Estimating log-probabilities in dLLMs requires innovative approaches since they lack the natural sequential factorization of autoregressive models.</p>
-    </div>
-    <p>Adapting RL algorithms to masked dLLMs poses unique challenges since existing approaches for AR models (PPO and GRPO) rely on computing log-probabilities of generated sequences, which cannot be directly applied to dLLMs. While AR models use sequential factorization, dLLMs lack this natural decomposition due to their iterative, non-sequential generation process.</p>
-    
-    <p>To address this, we propose an efficient log-probability estimator using Mean-Field Approximation of Sequence Log Probability. This approach decomposes sequence-level log-probability with a simple mean-field decomposition and employs One-Step Per-Token Log Probability Estimation with Prompt Masking.</p>
-    
-    <p>Using this estimator, we extend GRPO to masked dLLMs with the following objective:</p>
-    
-    <div class="figure-container">
-      <img src="./static/images/diffugrpoloss.png" alt="diffu-GRPO loss" style="max-width: 80%; display: block; margin: 0 auto;">
-      <p class="image-caption">The diffu-GRPO objective builds on GRPO while leveraging our efficient log-probability estimators.</p>
-    </div>
-    
-    <p>On-policy RL algorithms typically perform multiple gradient updates per batch of samples, requiring a careful balance between outer batch iterations and inner gradient updates. Our log-probability estimator introduces stochastic masking that creates perturbed views of the same (prompt, completion) pairs, serving as regularization for policy optimization. This unique approach allows us to scale the number of inner updates (μ) to higher values while maintaining stable learning dynamics, reducing the number of outer batch iterations and online generations needed—ultimately lowering computational cost significantly.</p>
-    
-    <div class="figure-container">
-      <img src="./static/images/algobox.png" alt="diffu-GRPO algorithm" style="max-width: 70%; display: block; margin: 0 auto;">
-      <!-- <p class="image-caption">Our novel diffu-GRPO algorithm leverages random prompt masking for efficient log-probability estimation, which serves as a form of regularization for policy optimization.</p> -->
-    </div>
-  </div>
-</div>
-        <!-- Random Masking Benefits -->
-        <div class="blog-section">
-          <h2 class="title is-3 has-text-centered section-title">Benefits of Random Masking</h2>
-          <div class="content has-text-justified">
-            <div class="figure-container">
-              <img src="./static/images/mu.png" alt="Random masking efficiency" style="max-width: 80%; display: block; margin: 0 auto;">
-              <p class="image-caption">Random masking consistently outperforms fixed masking and allows scaling μ (gradient updates per batch) to much higher values while maintaining or improving performance, facilitating faster convergence of RL training.</p>
-            </div>
-            
-            <!-- <p>Our random masking approach serves as a form of regularization for policy optimization, allowing more gradient updates per batch and thereby reducing the number of online generations needed for RL training - significantly lowering computational costs.</p> -->
           </div>
         </div>
 
-          <!-- After the existing Key Results section -->
+        <div class="section-divider"></div>
+
+        <!-- Two-Stage Training Framework -->
+        <div class="blog-section animated-bg">
+          <div class="section-badge">Methodology</div>
+          <h2 class="title is-3 has-text-centered section-title">d1: Two-Stage Framework to Enhance Reasoning in Masked dLLMs</h2>
+          <div class="content has-text-justified">
+            
+            <h3 class="title is-4">Stage 1: Masked SFT on High-Quality Reasoning Traces</h3>
+            <div class="figure-container">
+              <img src="./static/images/algorithm_sft.png" alt="SFT algorithm">
+              <p class="image-caption">We perform SFT on s1k, a curated dataset consisting of 1000 high-quality reasoning questions. The reasoning traces exhibit detailed step-by-step problem-solving processes, including verification of intermediate results and backtracking when encountering errors.</p>
+            </div>
+            
+            <h3 class="title is-4 mt-5">Stage 2: Efficient Policy Gradient Algorithm for dLLMs - diffu-GRPO</h3>
+            <div class="figure-container">
+              <img src="./static/images/logprob.png" alt="Log probability estimation">
+              <p class="image-caption">Estimating log-probabilities in dLLMs requires innovative approaches since they lack the natural sequential factorization of autoregressive models.</p>
+            </div>
+            <p>Adapting RL algorithms to masked dLLMs poses unique challenges since existing approaches for AR models (PPO and GRPO) rely on computing log-probabilities of generated sequences, which cannot be directly applied to dLLMs. While AR models use sequential factorization, dLLMs lack this natural decomposition due to their iterative, non-sequential generation process.</p>
+            
+            <p>To address this, we propose an efficient log-probability estimator using Mean-Field Approximation of Sequence Log Probability. This approach decomposes sequence-level log-probability with a simple mean-field decomposition and employs One-Step Per-Token Log Probability Estimation with Prompt Masking.</p>
+            
+            <p>Using this estimator, we extend GRPO to masked dLLMs with the following objective:</p>
+            
+            <div class="figure-container">
+              <img src="./static/images/diffugrpoloss.png" alt="diffu-GRPO loss">
+              <p class="image-caption">The diffu-GRPO objective builds on GRPO while leveraging our efficient log-probability estimators.</p>
+            </div>
+            
+            <p>On-policy RL algorithms typically perform multiple gradient updates per batch of samples, requiring a careful balance between outer batch iterations and inner gradient updates. Our log-probability estimator introduces stochastic masking that creates perturbed views of the same (prompt, completion) pairs, serving as regularization for policy optimization. This unique approach allows us to scale the number of inner updates (μ) to higher values while maintaining stable learning dynamics, reducing the number of outer batch iterations and online generations needed—ultimately lowering computational cost significantly.</p>
+            
+            <div class="figure-container">
+              <img src="./static/images/algobox.png" alt="diffu-GRPO algorithm">
+              <!-- <p class="image-caption">Our novel diffu-GRPO algorithm leverages random prompt masking for efficient log-probability estimation, which serves as a form of regularization for policy optimization.</p> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Random Masking Benefits -->
         <div class="blog-section">
+          <div class="section-badge">Efficiency Analysis</div>
+          <h2 class="title is-3 has-text-centered section-title">Benefits of Random Masking</h2>
+          <div class="content has-text-justified">
+            <div class="figure-container">
+              <img src="./static/images/mu.png" alt="Random masking efficiency">
+              <p class="image-caption">Random masking consistently outperforms fixed masking and allows scaling μ (gradient updates per batch) to much higher values while maintaining or improving performance, facilitating faster convergence of RL training.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Detailed Performance Results -->
+        <div class="blog-section animated-bg">
+          <div class="section-badge">Benchmark Results</div>
           <h2 class="title is-3 has-text-centered section-title">Detailed Performance Results</h2>
           <div class="content has-text-justified">
             <p>Table below shows the detailed performance comparison across different benchmarks and generation sequence lengths. d1-LLaDA consistently outperforms all other models, with diffu-GRPO showing better performance than SFT alone.</p>
             
             <div class="figure-container">
-              <img src="./static/images/table1.png" alt="Performance comparison table" style="max-width: 90%; display: block; margin: 0 auto;">
+              <img src="./static/images/table1.png" alt="Performance comparison table">
               <p class="image-caption">Table: Model performance on GSM8K, MATH500, Countdown, and Sudoku benchmarks. Green values indicate best performance and blue values indicate second-best performance in each column. All models are evaluated with 0-shot prompting.</p>
             </div>
           </div>
         </div>
 
+        <div class="section-divider"></div>
+
         <!-- Qualitative Examples -->
         <div class="blog-section">
+          <div class="section-badge">Qualitative Analysis</div>
           <h2 class="title is-3 has-text-centered section-title">"Aha Moments" in Reasoning</h2>
           <div class="content has-text-justified">
             <div class="figure-container">
-              <img src="./static/images/qualitative_example_1.png" alt="Qualitative example" style="max-width: 80%; display: block; margin: 0 auto;">
+              <img src="./static/images/qualitative_example_1.png" alt="Qualitative example">
               <p class="image-caption">SFT and d1-LLaDA models show self-verification and self-correction behaviors ("aha moments") in their reasoning traces.</p>
             </div>
             <p>The models trained with SFT show self-verification and self-correction behaviors in their reasoning traces, where they can recognize errors in their initial reasoning paths, backtrack, and correct to arrive at the answer.</p>
           </div>
         </div>
 
-        <!-- BibTeX -->
-        <!-- <div class="blog-section">
-          <h2 class="title is-3 has-text-centered section-title">Citation</h2>
-          <div class="content has-text-centered">
-            <pre style="text-align: left; background-color: #f5f5f5; padding: 1rem; border-radius: 4px;"><code>@inproceedings{zhaoandgupta2025d1,
-    title={d1: Scaling Reasoning in Diffusion Large Language Models via Reinforcement Learning},
-    author={Zhao, Siyan and Gupta, Devaansh and Zheng, Qinqing and Grover, Aditya},
-    booktitle={preprint},
-    year={2025}
-}</code></pre>
-          </div>
-        </div> -->
-        
       </div>
     </div>
   </div>
@@ -273,7 +398,7 @@
   <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link" href="https://github.com/dllm-reasoning/d1">
-        <i class="fab fa-github"></i>
+        <i class="fab fa-github fa-2x"></i>
       </a>
     </div>
     <div class="columns is-centered">
