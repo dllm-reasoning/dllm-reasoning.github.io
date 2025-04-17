@@ -410,6 +410,43 @@ pre {
   </div>
 </section>
 
+
+  <section class="section">
+  <div class="container is-max-desktop">
+    <div class="blog-section animated-bg">
+      <div class="section-badge">BibTeX</div>
+      <h2 class="title is-3 has-text-centered section-title">Citation</h2>
+      <div class="content">
+        <pre id="bibtex-entry">
+@misc{zhao2025d1scalingreasoningdiffusion,
+  title={d1: Scaling Reasoning in Diffusion Large Language Models via Reinforcement Learning}, 
+  author={Siyan Zhao and Devaansh Gupta and Qinqing Zheng and Aditya Grover},
+  year={2025},
+  eprint={2504.12216},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2504.12216}
+}
+        </pre>
+        <button class="button is-small is-info" onclick="copyBibtex()">Copy to Clipboard</button>
+        <p id="copy-success" style="display:none; color: green; margin-top: 0.5rem;">Copied!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function copyBibtex() {
+    const bibtexText = document.getElementById("bibtex-entry").innerText;
+    navigator.clipboard.writeText(bibtexText).then(function() {
+      const successMsg = document.getElementById("copy-success");
+      successMsg.style.display = "block";
+      setTimeout(() => successMsg.style.display = "none", 2000);
+    });
+  }
+</script>
+
+  
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
